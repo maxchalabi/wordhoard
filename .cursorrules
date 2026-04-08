@@ -1,0 +1,92 @@
+# WordHoard - Project Plan
+
+## Overview
+Offline-capable vocabulary collector app built with React Native (Expo SDK 54). Dark calligraphy-ink theme with warm gold accents. Users select a target language, add words with translations, browse/search per-language libraries, hear pronunciation via native TTS with the correct voice, and quiz with flashcards. Supports 16 languages with auto-romanization for non-Latin scripts.
+
+## Tech Stack
+- **Framework**: React Native with Expo SDK 54, expo-router v6 (file-based routing)
+- **Storage**: AsyncStorage (JSON-based local storage, per-language keys)
+- **TTS**: expo-speech (per-language voice via LanguageConfig.ttsCode)
+- **Export**: expo-file-system + expo-sharing (write text file, open native share sheet)
+- **Romanization**: pinyin-pro (Chinese), wanakana (Japanese kana→romaji), built-in Korean romanization (Revised Romanization, no external dep), built-in tables (Russian, Arabic, Hindi, Thai)
+- **Icons**: @expo/vector-icons (FontAwesome)
+- **Navigation**: expo-router -- 2 bottom tabs (Home, Library) + modals for Add Word and Language Selector
+
+## Design System
+- **Theme**: Dark-first with warm gold accents (#D4A853 primary, #C89B3C deep gold)
+- **Background**: near-black (#0D0D0D), cards (#1A1814), inputs (#141210)
+- **Text**: warm off-white (#E8E0D4), subtitle (#8C8478), pinyin (#9C9488)
+- **Borders**: subtle warm (#2A2520)
+- **Cards**: shadow/elevation, no visible borders, rounded (16-20px)
+- **Buttons**: gold fill with dark text for primary; gold outline for secondary
+
+## Architecture
+
+### File Structure
+```
+app/
+  _layout.tsx          # Root layout (CustomDarkTheme + Stack with modals, runs migration)
+  +not-found.tsx       # 404 screen
+  add-modal.tsx        # Add Word modal (language-aware labels/placeholders/pronunciation)
+  language-modal.tsx   # Language selector modal (15 languages with flags)
+  (tabs)/
+    _layout.tsx        # 2 tabs: Home, Library
+    index.tsx          # Home screen - language button + flashcard quiz + "+" add button
+    library.tsx        # Library screen - per-language search + word list + edit modal + export
+lib/
+  languages.ts         # LanguageConfig type, LANGUAGES array (15 langs), getLanguageByCode
+  database.ts          # AsyncStorage CRUD with languageCode param, migration, get/setSelectedLanguage
+  speech.ts            # TTS wrapper (speakWord with per-language voice)
+  pronunciation.ts     # Multi-language romanization (pinyin, romaji, Korean, Cyrillic, Arabic, Devanagari, Thai)
+components/
+  WordForm.tsx          # Shared word/translation/pronunciation form (used by add-modal + library edit)
+  WordCard.tsx          # Word card with language prop (pronunciation toggle for non-Latin)
+  FlashCard.tsx         # Flippable flashcard with language prop
+  useColors.ts          # Hook: returns themed color palette (wraps useColorScheme + Colors)
+  useLanguage.ts        # Hook: loads selected language from AsyncStorage, returns { language, refresh }
+  useColorScheme.ts     # Base color scheme hook
+  Themed.tsx            # Theme-aware Text/View components
+constants/
+  Colors.ts             # Dark/light theme (gold accent palette)
+```
+
+### Supported Languages
+Chinese (Mandarin), Japanese, Korean, Spanish, French, German, Italian, Portuguese (Brazil), Russian, Arabic, Hindi, Thai, Vietnamese, Turkish, Indonesian.
+
+Non-Latin scripts (Chinese, Japanese, Korean, Russian, Arabic, Hindi, Thai) have auto-generated pronunciation guides (pinyin/romaji/romanization/transliteration) that are always editable by the user.
+
+### Data Model (AsyncStorage)
+Words stored per language: key `vocabulary_words_{langCode}` (e.g. `vocabulary_words_zh-CN`).
+Each word: id, word, translation, pronunciation, created_at, times_reviewed.
+Selected language persisted under `selected_language` key.
+Legacy data (chinese/english/pinyin fields) auto-migrated to zh-CN on first load.
+
+### Key Patterns
+- `useColors()` hook replaces the 2-line colorScheme + Colors boilerplate in every component
+- `useLanguage()` hook provides `{ language, refresh }` -- eliminates async getSelectedLanguage + getLanguageByCode boilerplate from all screens
+- `WordForm` shared component used by both add-modal and library edit modal -- handles word input, pronunciation auto-generation, speaker button, and translation input
+- Language selector button in Home header opens language-modal (router.push('/language-modal'))
+- Add Word accessed via modal from Home screen "+" button (router.push('/add-modal'))
+- All CRUD functions take languageCode as first param to scope to correct storage key
+- Home tab useFocusEffect only refreshes language + word count on re-focus; a new quiz card is only fetched on first load, language change, or "Got It" tap (uses refs to avoid unnecessary reloads)
+- Library tab useFocusEffect reloads word list on every focus
+- Auto-pronunciation generation on word input change (for non-Latin script languages)
+- Pronunciation field always editable for user corrections
+- speakWord(text, language) uses per-language TTS code and rate
+- FlashCard and WordCard accept language prop for TTS and pronunciation display
+- Label says language's nativeName (e.g. "中文", "日本語"), translation field says "Translation"
+- Placeholder text in the target language (e.g. "输入中文...", "日本語を入力...")
+- Flashcard flip animation using React Native Animated API
+- Speaker button placed outside flip touchable to prevent accidental card flips on Android
+- Quiz uses weighted random selection: weight = 1/(1+times_reviewed), so less-reviewed words appear more often but all words have a chance; last-shown word ID stored in AsyncStorage (`last_quiz_word_{langCode}`) to prevent back-to-back repeats; single "Got It" button advances to next card
+- Platform.select for shadow (iOS shadowColor vs Android elevation)
+- Library export: share-square-o button in Library title row writes all words to a .txt file via expo-file-system and opens native share sheet via expo-sharing; format includes language name, date, word count, and one line per word (word — translation, with pronunciation in parens for non-Latin scripts); empty library shows alert instead
+- Library custom scrollbar: draggable scroll thumb on right edge of FlatList built with PanResponder + Animated (no external deps); thumb auto-hides after 1.5s inactivity, fades in on scroll/drag; 4px visible width with 24px hit area for easy grabbing; only rendered when content overflows the list viewport
+
+## Running the App
+1. **Dev on laptop**: `npx expo start --web` to develop in browser
+2. **Dev on phone**: Install Expo Go, `npx expo start`, scan QR code
+3. **Build APK**: `eas build -p android --profile preview`
+4. Fully offline after install (no server, no accounts)
+5. For non-default TTS voices: Settings > System > Languages > Text-to-Speech to download voice packs
+6. **Tested on**: Google Pixel; should work on any Android 6.0+ device with Google TTS

@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "ChineseVocabularyApp",
-    "slug": "ChineseVocabularyApp",
+    "name": "WordHoard",
+    "slug": "WordHoard",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "chinesevocabularyapp",
+    "scheme": "wordhoard",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
