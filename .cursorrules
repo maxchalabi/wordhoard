@@ -83,6 +83,9 @@ Legacy data (chinese/english/pinyin fields) auto-migrated to zh-CN on first load
 - Library export: share-square-o button in Library title row writes all words to a .txt file via expo-file-system and opens native share sheet via expo-sharing; format includes language name, date, word count, and one line per word (word — translation, with pronunciation in parens for non-Latin scripts); empty library shows alert instead
 - Library custom scrollbar: draggable scroll thumb on right edge of FlatList built with PanResponder + Animated (no external deps); thumb auto-hides after 1.5s inactivity, fades in on scroll/drag; 4px visible width with 24px hit area for easy grabbing; only rendered when content overflows the list viewport
 
+## Repository
+Public repo: https://github.com/maxchalabi/wordhoard
+
 ## Running the App
 1. **Dev on laptop**: `npx expo start --web` to develop in browser
 2. **Dev on phone**: Install Expo Go, `npx expo start`, scan QR code
