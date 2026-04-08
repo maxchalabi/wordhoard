@@ -77,11 +77,15 @@ Scan the QR code with Expo Go.
 
 ### Build a standalone APK
 
+The app is linked to Expo via `extra.eas.projectId` in `app.json`. If you ever need to re-link, use the `eas init --id …` command from your Expo project page.
+
 ```bash
 npm install -g eas-cli
 eas login
 eas build -p android --profile preview
 ```
+
+**Do not** use the dashboard’s `build --platform all --auto-submit` unless you are ready to submit to the Play Store and App Store; for a phone install, the command above produces a downloadable `.apk`.
 
 Download the `.apk` from the link EAS gives you and install it on your phone.
 

@@ -86,6 +86,10 @@ Legacy data (chinese/english/pinyin fields) auto-migrated to zh-CN on first load
 ## Repository
 Public repo: https://github.com/maxchalabi/wordhoard
 
+## EAS / standalone builds
+- `eas.json` defines `preview` (Android APK) and `production` (Android App Bundle for Play Store).
+- Expo project id is in `app.json` under `expo.extra.eas.projectId` (links local app to Expo dashboard).
+
 ## Running the App
 1. **Dev on laptop**: `npx expo start --web` to develop in browser
 2. **Dev on phone**: Install Expo Go, `npx expo start`, scan QR code
