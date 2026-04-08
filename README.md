@@ -8,6 +8,16 @@ Supports **16 languages** with text-to-speech pronunciation and automatic romani
 
 Open the link above on your Android phone, download the APK, and tap to install. You may need to allow "Install from unknown sources" when prompted. No Expo, no server -- it runs as a standalone app.
 
+## Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/home-front.png" alt="Flashcard quiz" width="180" />
+  <img src="assets/screenshots/home-flipped.png" alt="Flashcard revealed" width="180" />
+  <img src="assets/screenshots/add-word.png" alt="Add word" width="180" />
+  <img src="assets/screenshots/library.png" alt="Library" width="180" />
+  <img src="assets/screenshots/languages.png" alt="Language selector" width="180" />
+</p>
+
 ## Supported Languages
 
 | Language | Script | Pronunciation Guide |
