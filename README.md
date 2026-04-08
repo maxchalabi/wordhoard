@@ -54,7 +54,7 @@ Supports **16 languages** with text-to-speech pronunciation and automatic romani
 ### Install
 
 ```bash
-git clone https://github.com/maxchalabi/WordHoard.git
+git clone https://github.com/maxchalabi/wordhoard.git
 cd WordHoard
 npm install
 ```
