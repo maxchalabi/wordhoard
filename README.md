@@ -10,38 +10,27 @@ Open the link above on your Android phone, download the APK, and tap to install.
 
 ## How It Works
 
-<table>
-  <tr>
-    <td align="center" width="200">
-      <img src="assets/screenshots/languages.png" alt="Choose a language" width="180" /><br />
-      <b>Pick your language</b><br />
-      <sub>Choose from 16 languages. Non-Latin scripts get automatic pronunciation guides.</sub>
-    </td>
-    <td align="center" width="200">
-      <img src="assets/screenshots/add-word.png" alt="Add a word" width="180" /><br />
-      <b>Add words as you learn</b><br />
-      <sub>Type a word and its translation. Pinyin, romaji, and other romanizations are generated automatically.</sub>
-    </td>
-    <td align="center" width="200">
-      <img src="assets/screenshots/library.png" alt="Browse your library" width="180" /><br />
-      <b>Browse your library</b><br />
-      <sub>Search, edit, listen to pronunciation, or export your full word list.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="200">
-      <img src="assets/screenshots/home-front.png" alt="Quiz yourself" width="180" /><br />
-      <b>Quiz yourself</b><br />
-      <sub>A random word appears as a flashcard. Less-reviewed words come up more often.</sub>
-    </td>
-    <td align="center" width="200">
-      <img src="assets/screenshots/home-flipped.png" alt="Reveal the answer" width="180" /><br />
-      <b>Tap to reveal</b><br />
-      <sub>Flip the card to see the translation, pronunciation, and hear it spoken aloud.</sub>
-    </td>
-    <td></td>
-  </tr>
-</table>
+### 1. Pick your language
+Choose from 16 languages. Non-Latin scripts (Chinese, Japanese, Korean, Russian, Arabic, Hindi, Thai) get automatic pronunciation guides.
+
+<p align="center"><img src="assets/screenshots/languages.png" alt="Language selector" width="270" /></p>
+
+### 2. Add words as you learn
+Type a word and its translation. Pinyin, romaji, and other romanizations are generated automatically.
+
+<p align="center"><img src="assets/screenshots/add-word.png" alt="Add a word" width="270" /></p>
+
+### 3. Browse your library
+Search, edit, listen to pronunciation, delete, or export your full word list as a text file.
+
+<p align="center"><img src="assets/screenshots/library.png" alt="Library" width="270" /></p>
+
+### 4. Quiz yourself with flashcards
+A random word appears on a card -- less-reviewed words show up more often. Tap to flip and reveal the translation, then hit **Got It** to move on.
+
+<p align="center">
+<img src="assets/screenshots/home-front.png" alt="Flashcard front" width="270" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/screenshots/home-flipped.png" alt="Flashcard revealed" width="270" />
+</p>
 
 ## Supported Languages
 
