@@ -6,6 +6,8 @@ Supports **16 languages** with text-to-speech pronunciation and automatic romani
 
 [**Download APK (Android)**](https://github.com/maxchalabi/wordhoard/releases/latest/download/WordHoard-v1.0.0.apk)
 
+Open the link above on your Android phone, download the APK, and tap to install. You may need to allow "Install from unknown sources" when prompted. No Expo, no server -- it runs as a standalone app.
+
 ## Supported Languages
 
 | Language | Script | Pronunciation Guide |
