@@ -4,6 +4,8 @@ A personal vocabulary collector for language learners. Add words, build your lib
 
 Supports **16 languages** with text-to-speech pronunciation and automatic romanization for non-Latin scripts.
 
+[**Download APK (Android)**](https://github.com/maxchalabi/wordhoard/releases/latest/download/WordHoard-v1.0.0.apk)
+
 ## Supported Languages
 
 | Language | Script | Pronunciation Guide |
