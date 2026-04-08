@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useMemo } from 'react';
+import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,10 +9,10 @@ import {
   ActivityIndicator,
   Modal,
   TouchableOpacity,
-  KeyboardAvoidingView,
   Platform,
   Animated,
   PanResponder,
+  Keyboard,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -48,6 +48,23 @@ export default function LibraryScreen() {
   const [editWord, setEditWord] = useState('');
   const [editTranslation, setEditTranslation] = useState('');
   const [editPronunciation, setEditPronunciation] = useState('');
+
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  useEffect(() => {
+    const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+    const showSub = Keyboard.addListener(showEvent, (e) => {
+      setKeyboardHeight(e.endCoordinates.height);
+    });
+    const hideSub = Keyboard.addListener(hideEvent, () => {
+      setKeyboardHeight(0);
+    });
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
 
   const flatListRef = useRef<FlatList<Word>>(null);
   const contentHeightRef = useRef(0);
@@ -393,14 +410,14 @@ export default function LibraryScreen() {
         transparent
         onRequestClose={() => setEditingWord(null)}
       >
-        <KeyboardAvoidingView
-          style={styles.modalOverlay}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        >
+        <View style={styles.modalOverlay}>
           <View
             style={[
               styles.modalContent,
-              { backgroundColor: colors.background },
+              {
+                backgroundColor: colors.background,
+                paddingBottom: keyboardHeight > 0 ? keyboardHeight : 40,
+              },
             ]}
           >
             <View style={styles.modalHeader}>
@@ -444,7 +461,7 @@ export default function LibraryScreen() {
               <Text style={styles.saveText}>Save Changes</Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
+        </View>
       </Modal>
     </View>
   );
@@ -547,7 +564,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingHorizontal: 20,
-    paddingBottom: 40,
   },
   modalHeader: {
     flexDirection: 'row',
