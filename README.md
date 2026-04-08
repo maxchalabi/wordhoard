@@ -4,7 +4,7 @@ A personal vocabulary collector for language learners. Add words, build your lib
 
 Supports **16 languages** with text-to-speech pronunciation and automatic romanization for non-Latin scripts.
 
-[**Download APK (Android)**](https://github.com/maxchalabi/wordhoard/releases/latest/download/WordHoard-v1.0.0.apk)
+[**Download APK (Android)**](https://github.com/maxchalabi/wordhoard/releases/latest/download/WordHoard-v1.0.1.apk)
 
 Open the link above on your Android phone, download the APK, and tap to install. You may need to allow "Install from unknown sources" when prompted. No Expo, no server -- it runs as a standalone app.
 
