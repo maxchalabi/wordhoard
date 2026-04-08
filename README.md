@@ -8,15 +8,40 @@ Supports **16 languages** with text-to-speech pronunciation and automatic romani
 
 Open the link above on your Android phone, download the APK, and tap to install. You may need to allow "Install from unknown sources" when prompted. No Expo, no server -- it runs as a standalone app.
 
-## Screenshots
+## How It Works
 
-<p align="center">
-  <img src="assets/screenshots/home-front.png" alt="Flashcard quiz" width="180" />
-  <img src="assets/screenshots/home-flipped.png" alt="Flashcard revealed" width="180" />
-  <img src="assets/screenshots/add-word.png" alt="Add word" width="180" />
-  <img src="assets/screenshots/library.png" alt="Library" width="180" />
-  <img src="assets/screenshots/languages.png" alt="Language selector" width="180" />
-</p>
+<table>
+  <tr>
+    <td align="center" width="200">
+      <img src="assets/screenshots/languages.png" alt="Choose a language" width="180" /><br />
+      <b>Pick your language</b><br />
+      <sub>Choose from 16 languages. Non-Latin scripts get automatic pronunciation guides.</sub>
+    </td>
+    <td align="center" width="200">
+      <img src="assets/screenshots/add-word.png" alt="Add a word" width="180" /><br />
+      <b>Add words as you learn</b><br />
+      <sub>Type a word and its translation. Pinyin, romaji, and other romanizations are generated automatically.</sub>
+    </td>
+    <td align="center" width="200">
+      <img src="assets/screenshots/library.png" alt="Browse your library" width="180" /><br />
+      <b>Browse your library</b><br />
+      <sub>Search, edit, listen to pronunciation, or export your full word list.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="200">
+      <img src="assets/screenshots/home-front.png" alt="Quiz yourself" width="180" /><br />
+      <b>Quiz yourself</b><br />
+      <sub>A random word appears as a flashcard. Less-reviewed words come up more often.</sub>
+    </td>
+    <td align="center" width="200">
+      <img src="assets/screenshots/home-flipped.png" alt="Reveal the answer" width="180" /><br />
+      <b>Tap to reveal</b><br />
+      <sub>Flip the card to see the translation, pronunciation, and hear it spoken aloud.</sub>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ## Supported Languages
 
